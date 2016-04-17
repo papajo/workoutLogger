@@ -16,13 +16,17 @@ var AppStore = assign({}, EventEmitter.prototype, {
 			return _showForm;
 	},
 	addWorkout: function(workout){
-		_workouts.push(workout)
+		_workouts.push(workout);
 	},
 	receiveWorkouts: function(workouts){
 		_workouts = workouts;
 	},
 	getWorkouts: function(){
 		return _workouts;
+	},
+	removeWorkout: function(workoutId){
+		var index = _workouts.findIndex(x => x.id === workoutId);
+		_workouts.splice(index, 1);
 	},
 	emitChange: function(){
 		this.emit(CHANGE_EVENT);
@@ -47,6 +51,12 @@ AppDispatcher.register(function(payload){
 		case AppConstants.ADD_WORKOUT:
 				AppStore.addWorkout(action.workout);
 				AppAPI.addWorkout(action.workout);
+				AppStore.emit(CHANGE_EVENT);
+				break;
+
+		case AppConstants.REMOVE_WORKOUT:
+				AppStore.removeWorkout(action.workoutId);
+				AppAPI.removeWorkout(action.workoutId);
 				AppStore.emit(CHANGE_EVENT);
 				break;
 
