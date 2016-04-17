@@ -30,6 +30,7 @@ var AddForm = React.createClass({
 		e.preventDefault();
 		var workout = {
 				id: uuid.v4(),
+				type: this.refs.type.value.trim(),
 				minutes: this.refs.minutes.value.trim(),
 				miles: this.refs.miles.value.trim(),
 				date: new Date()

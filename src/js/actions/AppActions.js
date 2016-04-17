@@ -6,6 +6,18 @@ var AppActions = {
 			AppDispatcher.handleViewAction({
 				actionType: AppConstants.SHOW_FORM
 			})
+		},
+		addWorkout: function(workout) {
+			AppDispatcher.handleViewAction({
+				actionType: AppConstants.ADD_WORKOUT,
+				workout: workout
+			})
+		},
+		receiveWorkouts: function(workouts){
+			AppDispatcher.handleViewAction({
+				actionType: AppConstants.RECEIVE_WORKOUTS,
+				workouts: workouts
+			})
 		}
 }
 
